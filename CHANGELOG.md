@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-forex` will be documented in this file.
 
+## v1.0.1 - 2024-03-03
+
+**Full Changelog**: https://github.com/finller/laravel-forex/compare/v1.0.0...v1.0.1
+
 ## v1.0.0 - 2024-03-03
 
 ### What's Changed
