@@ -2,7 +2,6 @@
 
 namespace Finller\Forex;
 
-use Finller\Forex\Commands\CacheForex;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -17,7 +16,6 @@ class ForexServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-forex')
-            ->hasConfigFile()
-            ->hasCommand(CacheForex::class);
+            ->hasConfigFile();
     }
 }
