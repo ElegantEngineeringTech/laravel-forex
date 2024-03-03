@@ -38,8 +38,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Finller\\Forex\\": "src/",
-            "Finller\\Forex\\Database\\Factories\\": "database/factories/"
+            "Finller\\Forex\\": "src/"
         }
     },
     "autoload-dev": {
