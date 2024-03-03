@@ -25,6 +25,12 @@ class ExchangeRateApiConnector extends Connector implements Cacheable
     use HasCaching;
     use HasRateLimits;
 
+    public function __construct()
+    {
+        $this->cachingEnabled = config('forex.cache.enabled', true);
+        $this->useRateLimitPlugin(config('forex.rate_limit.enabled', false));
+    }
+
     public function resolveBaseUrl(): string
     {
         return 'https://open.er-api.com/v6/';
