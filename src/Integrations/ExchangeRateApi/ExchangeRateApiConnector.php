@@ -2,7 +2,7 @@
 
 namespace Finller\Forex\Integrations\ExchangeRateApi;
 
-use Finller\Forex\Integrations\ExchangeRateApi\Request\LatestRequest;
+use Finller\Forex\Integrations\ExchangeRateApi\Requests\LatestRequest;
 use Illuminate\Support\Facades\Cache;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Contracts\Driver;
