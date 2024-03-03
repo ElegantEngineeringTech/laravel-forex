@@ -10,6 +10,6 @@ class DefaultForexRequest implements ForexRequest
     {
         $connector = new ExchangeRateApiConnector();
 
-        return $connector->latest($currency)->json('rates');
+        return $connector->latest($currency)->json('rates', []);
     }
 }
