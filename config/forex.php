@@ -13,6 +13,7 @@ return [
 
     'rate_limit' => [
         'driver' => env('FOREX_RATE_LIMIT_DRIVER', env('CACHE_DRIVER', 'file')),
+        'every_seconds' => 3_600,
     ],
 
     'request' => DefaultForexRequest::class,

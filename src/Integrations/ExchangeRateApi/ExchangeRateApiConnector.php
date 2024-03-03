@@ -61,7 +61,7 @@ class ExchangeRateApiConnector extends Connector implements Cacheable
     protected function resolveLimits(): array
     {
         return [
-            Limit::allow(1)->everyDay(),
+            Limit::allow(1)->everySeconds(config('forex.rate_limit.every_seconds')),
         ];
     }
 }
