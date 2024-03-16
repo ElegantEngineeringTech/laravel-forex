@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-forex` will be documented in this file.
 
+## v1.0.6 Laravel 11 - 2024-03-16
+
+**Full Changelog**: https://github.com/finller/laravel-forex/compare/v1.0.5...v1.0.6
+
 ## v1.0.5 - 2024-03-03
 
 **Full Changelog**: https://github.com/finller/laravel-forex/compare/v1.0.4...v1.0.5
