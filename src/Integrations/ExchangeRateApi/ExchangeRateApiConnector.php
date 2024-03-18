@@ -2,6 +2,7 @@
 
 namespace Finller\Forex\Integrations\ExchangeRateApi;
 
+use Finller\Forex\ForexClient;
 use Finller\Forex\Integrations\ExchangeRateApi\Requests\LatestRequest;
 use Illuminate\Support\Facades\Cache;
 use Saloon\CachePlugin\Contracts\Cacheable;
@@ -20,7 +21,7 @@ use Saloon\RateLimitPlugin\Traits\HasRateLimits;
  *
  * @see https://www.exchangerate-api.com/docs/free
  */
-class ExchangeRateApiConnector extends Connector implements Cacheable
+class ExchangeRateApiConnector extends Connector implements Cacheable, ForexClient
 {
     use HasCaching;
     use HasRateLimits;
@@ -44,11 +45,6 @@ class ExchangeRateApiConnector extends Connector implements Cacheable
         ];
     }
 
-    public function latest(string $currency): Response
-    {
-        return $this->send(new LatestRequest($currency));
-    }
-
     public function resolveCacheDriver(): Driver
     {
         return new LaravelCacheDriver(Cache::store(config('forex.cache.driver', 'file')));
@@ -69,5 +65,15 @@ class ExchangeRateApiConnector extends Connector implements Cacheable
         return [
             Limit::allow(1)->everySeconds(config('forex.rate_limit.every_seconds')),
         ];
+    }
+
+    public function latest(string $currency): Response
+    {
+        return $this->send(new LatestRequest($currency));
+    }
+
+    public function rates(string $currency): array
+    {
+        return $this->latest($currency)->json('rates', []);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace Finller\Forex;
 
-interface ForexRequest
+interface ForexClient
 {
     /**
      * @return array<string, int|float>
      */
-    public static function get(string $currency): array;
+    public function rates(string $currency): array;
 }

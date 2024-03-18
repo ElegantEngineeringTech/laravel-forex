@@ -9,6 +9,12 @@ class Forex
      */
     protected array $rates = [];
 
+    public function __construct(
+        public ForexClient $client
+    ) {
+        //
+    }
+
     /**
      * @return array<string, int|float>
      */
@@ -26,10 +32,7 @@ class Forex
      */
     public function query(string $currency): array
     {
-        /** @var string $request */
-        $request = config('forex.request');
-
-        return $request::get($currency);
+        return $this->client->rates($currency);
     }
 
     /**

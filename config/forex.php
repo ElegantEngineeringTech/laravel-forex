@@ -2,7 +2,7 @@
 
 // config for Finller/Forex
 
-use Finller\Forex\DefaultForexRequest;
+use Finller\Forex\Integrations\ExchangeRateApi\ExchangeRateApiConnector;
 
 return [
 
@@ -18,6 +18,6 @@ return [
         'every_seconds' => 3_600,
     ],
 
-    'request' => DefaultForexRequest::class,
+    'client' => ExchangeRateApiConnector::class,
 
 ];

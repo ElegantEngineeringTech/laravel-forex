@@ -18,4 +18,13 @@ class ForexServiceProvider extends PackageServiceProvider
             ->name('laravel-forex')
             ->hasConfigFile();
     }
+
+    public function registeringPackage()
+    {
+        $this->app->scoped(ForexClient::class, function () {
+            $client = config('forex.client');
+
+            return new Forex(new $client());
+        });
+    }
 }
