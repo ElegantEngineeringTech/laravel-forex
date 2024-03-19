@@ -21,7 +21,7 @@ class ForexServiceProvider extends PackageServiceProvider
 
     public function registeringPackage()
     {
-        $this->app->scoped(ForexClient::class, function () {
+        $this->app->scoped(Forex::class, function () {
             $client = config('forex.client');
 
             return new Forex(new $client());
