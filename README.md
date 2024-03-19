@@ -7,6 +7,8 @@
 
 Easily retreive latest exchange rates value in your app.
 
+By default, this package use the free endpoint provided by [exchangerate-api.com](https://www.exchangerate-api.com/) but you can use it with any forex provider.
+
 ## Installation
 
 You can install the package via composer:
@@ -24,17 +26,25 @@ php artisan vendor:publish --tag="laravel-forex-config"
 This is the contents of the published config file:
 
 ```php
+
+use Finller\Forex\Integrations\ExchangeRateApi\ExchangeRateApiConnector;
+
 return [
+
     'cache' => [
+        'enabled' => true,
         'driver' => env('FOREX_CACHE_DRIVER', env('CACHE_DRIVER', 'file')),
         'expiry_seconds' => 86_400,
     ],
 
     'rate_limit' => [
+        'enabled' => false,
         'driver' => env('FOREX_RATE_LIMIT_DRIVER', env('CACHE_DRIVER', 'file')),
+        'every_seconds' => 3_600,
     ],
 
-    'request' => DefaultForexRequest::class,
+    'client' => ExchangeRateApiConnector::class,
+
 ];
 ```
 
@@ -44,7 +54,7 @@ return [
 
 $rates = \Finller\Forex\Facades\Forex::get('USD');
 
-echo $rates['EUR'];
+$USD_to_EUR_rate = $rates['EUR'];
 
 ```
 
