@@ -7,7 +7,7 @@ use Finller\Forex\Integrations\ExchangeRateApi\ExchangeRateApiConnector;
 return [
 
     'cache' => [
-        'enabled' => false,
+        'enabled' => true,
         'driver' => env('FOREX_CACHE_DRIVER', env('CACHE_DRIVER', 'file')),
         'expiry_seconds' => 86_400,
     ],
