@@ -24,7 +24,7 @@ class Forex
         //
     }
 
-     /**
+    /**
      * @return array<string, int|float>
      */
     public function latest(string $currency): array
