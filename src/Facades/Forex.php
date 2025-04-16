@@ -7,8 +7,8 @@ namespace Elegantly\Forex\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static array<string, int|float> latest()
- * @method static array<string, int|float> rates()
+ * @method static array<string, int|float> latest(string $currency)
+ * @method static array<string, int|float> rates(Carbon $date, string $currency)
  * @method static array<string, int|float> refreshLatest()
  * @method static array<string, int|float> queryLatest()
  * @method static array<string, int|float> refreshRates()

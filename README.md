@@ -1,32 +1,37 @@
-# Forex for Laravel
+# Laravel Forex
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/elegantly/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/elegantly/laravel-forex)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/elegantly/laravel-forex/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/elegantly/laravel-forex/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/elegantly/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/elegantly/laravel-forex)  
+[![Tests](https://img.shields.io/github/actions/workflow/status/elegantly/laravel-forex/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3Arun-tests+branch%3Amain)  
+[![Code Style](https://img.shields.io/github/actions/workflow/status/elegantly/laravel-forex/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)  
 [![Total Downloads](https://img.shields.io/packagist/dt/elegantly/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/elegantly/laravel-forex)
 
-Easily retreive latest exchange rates value in your app.
+**Laravel Forex** is a simple and flexible package for retrieving the latest and historical foreign exchange rates in your Laravel application.
 
-By default, this package use the free endpoint provided by [exchangerate-api.com](https://www.exchangerate-api.com/) but you can use it with any forex provider.
+By default, it uses the free tier from [exchangerate-api.com](https://www.exchangerate-api.com/), but you can easily configure it to use any other Forex provider.
 
-## Installation
+---
 
-You can install the package via composer:
+## 🚀 Installation
+
+Install via Composer:
 
 ```bash
 composer require elegantly/laravel-forex
 ```
 
-You can publish the config file with:
+Publish the configuration file:
 
 ```bash
-php artisan vendor:publish --tag="laravel-forex-config"
+php artisan vendor:publish --tag="forex-config"
 ```
 
-This is the contents of the published config file:
+---
+
+## ⚙️ Configuration
+
+Here’s the default configuration that will be published to `config/forex.php`:
 
 ```php
-
 use Elegantly\Forex\Integrations\ExchangeRateApiFree\ExchangeRateApiFreeConnector;
 
 return [
@@ -34,53 +39,92 @@ return [
     'cache' => [
         'enabled' => true,
         'driver' => env('FOREX_CACHE_DRIVER', env('CACHE_DRIVER', 'file')),
-        'expiry_seconds' => 86_400,
+        'expiry_seconds' => 86_400, // 1 day
     ],
 
     'rate_limit' => [
         'enabled' => false,
         'driver' => env('FOREX_RATE_LIMIT_DRIVER', env('CACHE_DRIVER', 'file')),
-        'every_seconds' => 3_600,
+        'every_seconds' => 3_600, // 1 hour
     ],
 
     'client' => ExchangeRateApiFreeConnector::class,
 
+    'clients' => [
+        'exchange-rate-api' => [
+            'token' => env('EXCHANGE_RATE_API_TOKEN'),
+        ],
+    ],
+
 ];
 ```
 
-## Usage
+---
+
+## 📦 Usage
+
+### Get Latest Rates
 
 ```php
+use Elegantly\Forex\Facades\Forex;
 
-$rates = \Elegantly\Forex\Facades\Forex::get('USD');
+$rates = Forex::latest('USD');
 
-$USD_to_EUR_rate = $rates['EUR'];
-
+$usdToEur = $rates['EUR'];
 ```
 
-## Testing
+### Get Historical Rates
+
+```php
+use Carbon\Carbon;
+use Elegantly\Forex\Facades\Forex;
+
+$rates = Forex::rates(Carbon::create(2022, 4, 25), 'USD');
+
+$usdToEur = $rates['EUR'];
+```
+
+---
+
+## ✅ Testing
+
+Run the test suite with:
 
 ```bash
 composer test
 ```
 
-## Changelog
+---
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+## 📄 Changelog
 
-## Contributing
+See the [CHANGELOG](CHANGELOG.md) for details on recent updates.
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+---
 
-## Security Vulnerabilities
+## 🤝 Contributing
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+Contributions are welcome! Please read the [CONTRIBUTING](CONTRIBUTING.md) guide for details.
 
-## Credits
+---
+
+## 🔐 Security
+
+If you discover any security-related issues, please refer to our [security policy](../../security/policy).
+
+---
+
+## 🙏 Credits
 
 -   [Quentin Gabriele](https://github.com/QuentinGab)
 -   [All Contributors](../../contributors)
 
-## License
+---
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+## 📃 License
+
+This package is open-source software licensed under the [MIT license](LICENSE.md).
+
+---
+
+Let me know if you'd like this version saved in a `README.md` file or if you want badges for other integrations!
