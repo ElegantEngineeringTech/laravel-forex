@@ -27,7 +27,7 @@ This is the contents of the published config file:
 
 ```php
 
-use Elegantly\Forex\Integrations\ExchangeRateApi\ExchangeRateApiConnector;
+use Elegantly\Forex\Integrations\ExchangeRateApiFree\ExchangeRateApiFreeConnector;
 
 return [
 
@@ -43,7 +43,7 @@ return [
         'every_seconds' => 3_600,
     ],
 
-    'client' => ExchangeRateApiConnector::class,
+    'client' => ExchangeRateApiFreeConnector::class,
 
 ];
 ```

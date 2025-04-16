@@ -21,9 +21,10 @@ class ForexServiceProvider extends PackageServiceProvider
             ->hasConfigFile();
     }
 
-    public function registeringPackage()
+    public function registeringPackage(): void
     {
         $this->app->scoped(Forex::class, function () {
+            /** @var class-string<ForexClient> */
             $client = config('forex.client');
 
             return new Forex(new $client);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 // config for Finller/Forex
 
-use Elegantly\Forex\Integrations\ExchangeRateApi\ExchangeRateApiConnector;
+use Elegantly\Forex\Integrations\ExchangeRateApiFree\ExchangeRateApiFreeConnector;
 
 return [
 
@@ -20,6 +20,12 @@ return [
         'every_seconds' => 3_600,
     ],
 
-    'client' => ExchangeRateApiConnector::class,
+    'client' => ExchangeRateApiFreeConnector::class,
+
+    'clients' => [
+        'exchange-rate-api' => [
+            'token' => env('EXCHANGE_RATE_API_TOKEN'),
+        ],
+    ],
 
 ];

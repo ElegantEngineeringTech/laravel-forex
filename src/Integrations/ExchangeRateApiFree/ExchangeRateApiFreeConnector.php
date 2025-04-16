@@ -2,18 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Elegantly\Forex\Integrations\ExchangeRateApi;
+namespace Elegantly\Forex\Integrations\ExchangeRateApiFree;
 
 use Carbon\Carbon;
 use Elegantly\Forex\ForexClient;
-use Elegantly\Forex\Integrations\ExchangeRateApi\Requests\HistoryRequest;
 use Elegantly\Forex\Integrations\ExchangeRateApiFree\Requests\LatestRequest;
+use Exception;
 use Illuminate\Support\Facades\Cache;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Contracts\Driver;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;
 use Saloon\CachePlugin\Traits\HasCaching;
-use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\RateLimitPlugin\Contracts\RateLimitStore;
 use Saloon\RateLimitPlugin\Limit;
@@ -23,34 +22,24 @@ use Saloon\RateLimitPlugin\Traits\HasRateLimits;
 /**
  * Free exchange rate values updated once a day
  *
- * @see https://www.exchangerate-api.com/docs/overview
+ * @see https://www.exchangerate-api.com/docs/free
  */
-class ExchangeRateApiConnector extends Connector implements Cacheable, ForexClient
+class ExchangeRateApiFreeConnector extends Connector implements Cacheable, ForexClient
 {
     use HasCaching;
     use HasRateLimits;
 
-    public readonly string $token;
-
     public function __construct(
-        ?string $token = null,
         ?bool $cachingEnabled = null,
         ?bool $rateLimitingEnabled = null,
     ) {
-        // @phpstan-ignore-next-line
-        $this->token = $token ?? config('forex.clients.exchange-rate-api.token');
         $this->cachingEnabled = $cachingEnabled ?? (bool) config('forex.cache.enabled', true);
         $this->rateLimitingEnabled = $rateLimitingEnabled ?? (bool) config('forex.rate_limit.enabled', false);
     }
 
     public function resolveBaseUrl(): string
     {
-        return 'https://v6.exchangerate-api.com/v6/';
-    }
-
-    protected function defaultAuth(): TokenAuthenticator
-    {
-        return new TokenAuthenticator($this->token);
+        return 'https://open.er-api.com/v6/';
     }
 
     protected function defaultHeaders(): array
@@ -98,12 +87,11 @@ class ExchangeRateApiConnector extends Connector implements Cacheable, ForexClie
     public function latest(string $currency): array
     {
         // @phpstan-ignore-next-line
-        return $this->send(new LatestRequest($currency))->json('conversion_rates', []);
+        return $this->send(new LatestRequest($currency))->json('rates', []);
     }
 
     public function rates(Carbon $date, string $currency): array
     {
-        // @phpstan-ignore-next-line
-        return $this->send(new HistoryRequest($date, $currency))->json('conversion_rates', []);
+        throw new Exception(static::class.' does not support historical data.');
     }
 }

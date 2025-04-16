@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Elegantly\Forex\Integrations\ExchangeRateApi\Requests\LatestRequest;
+use Elegantly\Forex\Integrations\ExchangeRateApiFree\Requests\LatestRequest;
 use Elegantly\Forex\Tests\TestCase;
 use Saloon\Config;
 use Saloon\Http\Faking\MockClient;
