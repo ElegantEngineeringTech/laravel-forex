@@ -1,6 +1,8 @@
 <?php
 
-namespace Finller\Forex\Facades;
+declare(strict_types=1);
+
+namespace Elegantly\Forex\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -10,12 +12,12 @@ use Illuminate\Support\Facades\Facade;
  * @method static array<string, int|float> query(string $currency)
  * @method static array<string, int|float> refresh(string $currency)
  *
- * @see \Finller\Forex\Forex
+ * @see \Elegantly\Forex\Forex
  */
 class Forex extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \Finller\Forex\Forex::class;
+        return \Elegantly\Forex\Forex::class;
     }
 }

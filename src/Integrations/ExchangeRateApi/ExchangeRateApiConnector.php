@@ -1,9 +1,11 @@
 <?php
 
-namespace Finller\Forex\Integrations\ExchangeRateApi;
+declare(strict_types=1);
 
-use Finller\Forex\ForexClient;
-use Finller\Forex\Integrations\ExchangeRateApi\Requests\LatestRequest;
+namespace Elegantly\Forex\Integrations\ExchangeRateApi;
+
+use Elegantly\Forex\ForexClient;
+use Elegantly\Forex\Integrations\ExchangeRateApi\Requests\LatestRequest;
 use Illuminate\Support\Facades\Cache;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Contracts\Driver;

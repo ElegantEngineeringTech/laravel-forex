@@ -1,6 +1,8 @@
 <?php
 
-namespace Finller\Forex\Integrations\ExchangeRateApi\Requests;
+declare(strict_types=1);
+
+namespace Elegantly\Forex\Integrations\ExchangeRateApi\Requests;
 
 use Saloon\Enums\Method;
 use Saloon\Http\Request;

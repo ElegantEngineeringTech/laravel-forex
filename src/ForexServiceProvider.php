@@ -1,6 +1,8 @@
 <?php
 
-namespace Finller\Forex;
+declare(strict_types=1);
+
+namespace Elegantly\Forex;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;

@@ -1,7 +1,9 @@
 <?php
 
-use Finller\Forex\Integrations\ExchangeRateApi\Requests\LatestRequest;
-use Finller\Forex\Tests\TestCase;
+declare(strict_types=1);
+
+use Elegantly\Forex\Integrations\ExchangeRateApi\Requests\LatestRequest;
+use Elegantly\Forex\Tests\TestCase;
 use Saloon\Config;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;

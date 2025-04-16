@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 // config for Finller/Forex
 
-use Finller\Forex\Integrations\ExchangeRateApi\ExchangeRateApiConnector;
+use Elegantly\Forex\Integrations\ExchangeRateApi\ExchangeRateApiConnector;
 
 return [
 

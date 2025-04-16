@@ -1,6 +1,8 @@
 <?php
 
-use Finller\Forex\Facades\Forex;
+declare(strict_types=1);
+
+use Elegantly\Forex\Facades\Forex;
 
 it('can query forex', function () {
     $rates = Forex::get('USD');

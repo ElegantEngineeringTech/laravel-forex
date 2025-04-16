@@ -1,9 +1,9 @@
 # Forex for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/finller/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/finller/laravel-forex)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/finller/laravel-forex/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/finller/laravel-forex/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/finller/laravel-forex/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/finller/laravel-forex/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/finller/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/finller/laravel-forex)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/elegantly/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/elegantly/laravel-forex)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/elegantly/laravel-forex/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/elegantly/laravel-forex/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/elegantly/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/elegantly/laravel-forex)
 
 Easily retreive latest exchange rates value in your app.
 
@@ -14,7 +14,7 @@ By default, this package use the free endpoint provided by [exchangerate-api.com
 You can install the package via composer:
 
 ```bash
-composer require finller/laravel-forex
+composer require elegantly/laravel-forex
 ```
 
 You can publish the config file with:
@@ -27,7 +27,7 @@ This is the contents of the published config file:
 
 ```php
 
-use Finller\Forex\Integrations\ExchangeRateApi\ExchangeRateApiConnector;
+use Elegantly\Forex\Integrations\ExchangeRateApi\ExchangeRateApiConnector;
 
 return [
 
@@ -52,7 +52,7 @@ return [
 
 ```php
 
-$rates = \Finller\Forex\Facades\Forex::get('USD');
+$rates = \Elegantly\Forex\Facades\Forex::get('USD');
 
 $USD_to_EUR_rate = $rates['EUR'];
 
