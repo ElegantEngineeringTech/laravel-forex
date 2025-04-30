@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Elegantly\Forex\Facades;
 
+use Brick\Math\RoundingMode;
 use Brick\Money\Currency;
 use Brick\Money\Money;
 use Carbon\Carbon;
