@@ -19,7 +19,7 @@ uses()
     ->beforeEach(function () {
         MockClient::destroyGlobal();
         MockClient::global([
-            LatestRequest::class => MockResponse::fixture('exchange-rates-api/latest'),
+            LatestRequest::class => MockResponse::fixture('exchangerate-api-free/latest'),
         ]);
     })
     ->in(__DIR__);

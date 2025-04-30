@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace Elegantly\Forex;
 
+use Brick\Math\RoundingMode;
+use Brick\Money\Currency;
+use Brick\Money\CurrencyConverter;
+use Brick\Money\ExchangeRateProvider\BaseCurrencyProvider;
+use Brick\Money\ExchangeRateProvider\ConfigurableProvider;
+use Brick\Money\Money;
 use Carbon\Carbon;
 
 class Forex
@@ -95,5 +101,39 @@ class Forex
     public function getClient(): ForexClient
     {
         return $this->client;
+    }
+
+    public function convert(
+        Money $money,
+        string|Currency $currency,
+        RoundingMode $roundingMode = RoundingMode::HALF_UP,
+        ?Carbon $date = null,
+    ): Money {
+
+        $currency = is_string($currency) ? $currency : $currency->getCurrencyCode();
+
+        if ($money->getCurrency()->is($currency)) {
+            return $money;
+        }
+
+        $rates = $date ? $this->rates($date, $currency) : $this->latest($currency);
+
+        $provider = new BaseCurrencyProvider(
+            provider: (new ConfigurableProvider)->setExchangeRate(
+                $money->getCurrency()->getCurrencyCode(),
+                $currency,
+                $rates[$currency]
+            ),
+            baseCurrencyCode: $money->getCurrency()->getCurrencyCode()
+        );
+
+        $converter = new CurrencyConverter($provider);
+
+        return $converter->convert(
+            $money,
+            $currency,
+            roundingMode: $roundingMode
+        );
+
     }
 }

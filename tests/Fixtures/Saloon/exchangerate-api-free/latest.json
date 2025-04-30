@@ -1,0 +1,22 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Wed, 30 Apr 2025 18:14:19 GMT",
+        "Content-Type": "application\/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "access-control-allow-origin": "*",
+        "Cache-Control": "public, max-age=3600",
+        "x-content-type-options": "NOSNIFF",
+        "x-frame-options": "SAMEORIGIN",
+        "Last-Modified": "Wed, 30 Apr 2025 16:54:40 GMT",
+        "CF-Cache-Status": "HIT",
+        "Age": "2634",
+        "Report-To": "{\"endpoints\":[{\"url\":\"https:\\\/\\\/a.nel.cloudflare.com\\\/report\\\/v4?s=3%2BYMuaC86YCcmFTGXoi6Zu0MevtnVt%2BJSWCKOokyUXHTYhATOE2krcER6gWiCs7Uw5UhV8BjrQpyNYoMOHs66jIAyXvqfr%2FRhP%2FLQdKlwMOXXwVp4zW318NepOaLx%2BkgXRrACQq0gGicbeFvyw%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+        "NEL": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+        "Server": "cloudflare",
+        "CF-RAY": "938904a33ebd76f0-LHR",
+        "server-timing": "cfL4;desc=\"?proto=TCP&rtt=77344&min_rtt=77028&rtt_var=22213&sent=7&recv=9&lost=0&retrans=0&sent_bytes=3925&recv_bytes=1810&delivery_rate=66750&cwnd=253&unsent_bytes=0&cid=b58add9ca1c81ecf&ts=113&x=0\""
+    },
+    "data": "{\"result\":\"success\",\"provider\":\"https:\/\/www.exchangerate-api.com\",\"documentation\":\"https:\/\/www.exchangerate-api.com\/docs\/free\",\"terms_of_use\":\"https:\/\/www.exchangerate-api.com\/terms\",\"time_last_update_unix\":1745971351,\"time_last_update_utc\":\"Wed, 30 Apr 2025 00:02:31 +0000\",\"time_next_update_unix\":1746059261,\"time_next_update_utc\":\"Thu, 01 May 2025 00:27:41 +0000\",\"time_eol_unix\":0,\"base_code\":\"USD\",\"rates\":{\"USD\":1,\"AED\":3.6725,\"AFN\":70.95836,\"ALL\":86.781974,\"AMD\":389.902071,\"ANG\":1.79,\"AOA\":918.242865,\"ARS\":1170.67,\"AUD\":1.564538,\"AWG\":1.79,\"AZN\":1.700519,\"BAM\":1.717355,\"BBD\":2,\"BDT\":121.500036,\"BGN\":1.71761,\"BHD\":0.376,\"BIF\":2954.238265,\"BMD\":1,\"BND\":1.30854,\"BOB\":6.917642,\"BRL\":5.654984,\"BSD\":1,\"BTN\":85.218352,\"BWP\":13.70413,\"BYN\":3.052413,\"BZD\":2,\"CAD\":1.383898,\"CDF\":2882.821528,\"CHF\":0.824097,\"CLP\":943.679514,\"CNY\":7.27428,\"COP\":4210.863097,\"CRC\":504.954335,\"CUP\":24,\"CVE\":96.820374,\"CZK\":21.902743,\"DJF\":177.721,\"DKK\":6.55238,\"DOP\":58.849459,\"DZD\":132.397288,\"EGP\":50.801637,\"ERN\":15,\"ETB\":132.338319,\"EUR\":0.87807,\"FJD\":2.252843,\"FKP\":0.74606,\"FOK\":6.552179,\"GBP\":0.746061,\"GEL\":2.749737,\"GGP\":0.74606,\"GHS\":14.340327,\"GIP\":0.74606,\"GMD\":72.700014,\"GNF\":8698.170261,\"GTQ\":7.701682,\"GYD\":209.68957,\"HKD\":7.758339,\"HNL\":25.92619,\"HRK\":6.615817,\"HTG\":130.664153,\"HUF\":355.071344,\"IDR\":16731.457786,\"ILS\":3.623992,\"IMP\":0.74606,\"INR\":85.218447,\"IQD\":1308.719495,\"IRR\":41991.816131,\"ISK\":128.346259,\"JEP\":0.74606,\"JMD\":158.411928,\"JOD\":0.709,\"JPY\":142.324599,\"KES\":129.292345,\"KGS\":87.093523,\"KHR\":4026.795543,\"KID\":1.564972,\"KMF\":431.982057,\"KRW\":1433.503978,\"KWD\":0.306408,\"KYD\":0.833333,\"KZT\":512.103058,\"LAK\":21704.102867,\"LBP\":89500,\"LKR\":299.341271,\"LRD\":199.886111,\"LSL\":18.544097,\"LYD\":5.466531,\"MAD\":9.260138,\"MDL\":17.15025,\"MGA\":4505.466407,\"MKD\":54.237907,\"MMK\":2098.853267,\"MNT\":3581.085356,\"MOP\":7.99109,\"MRU\":39.740795,\"MUR\":45.051653,\"MVR\":15.444373,\"MWK\":1741.606043,\"MXN\":19.572566,\"MYR\":4.32765,\"MZN\":63.78196,\"NAD\":18.544097,\"NGN\":1601.178198,\"NIO\":36.791363,\"NOK\":10.369369,\"NPR\":136.349363,\"NZD\":1.683584,\"OMR\":0.384497,\"PAB\":1,\"PEN\":3.667201,\"PGK\":4.102792,\"PHP\":56.086682,\"PKR\":281.14514,\"PLN\":3.749038,\"PYG\":8026.098846,\"QAR\":3.64,\"RON\":4.371332,\"RSD\":102.914413,\"RUB\":81.934897,\"RWF\":1451.628705,\"SAR\":3.75,\"SBD\":8.550346,\"SCR\":14.633521,\"SDG\":460.924881,\"SEK\":9.634203,\"SGD\":1.30854,\"SHP\":0.74606,\"SLE\":22.6844,\"SLL\":22684.400139,\"SOS\":571.318515,\"SRD\":36.692335,\"SSP\":4594.846713,\"STN\":21.512712,\"SYP\":12884.774625,\"SZL\":18.544097,\"THB\":33.410303,\"TJS\":10.746862,\"TMT\":3.499564,\"TND\":2.979248,\"TOP\":2.35541,\"TRY\":38.51759,\"TTD\":6.742504,\"TVD\":1.564972,\"TWD\":32.21244,\"TZS\":2687.385631,\"UAH\":41.560412,\"UGX\":3661.325882,\"UYU\":42.028172,\"UZS\":12935.074414,\"VES\":86.8465,\"VND\":26020.988733,\"VUV\":120.688005,\"WST\":2.75839,\"XAF\":575.976077,\"XCD\":2.7,\"XCG\":1.79,\"XDR\":0.737159,\"XOF\":575.976077,\"XPF\":104.781834,\"YER\":245.118425,\"ZAR\":18.544104,\"ZMW\":28.198324,\"ZWL\":26.8115}}"
+}
