@@ -112,11 +112,13 @@ class Forex
 
         $currency = is_string($currency) ? $currency : $currency->getCurrencyCode();
 
-        if ($money->getCurrency()->is($currency)) {
+        $sourceCurrency = $money->getCurrency()->getCurrencyCode();
+
+        if ($sourceCurrency === $currency) {
             return $money;
         }
 
-        $rates = $date ? $this->rates($date, $currency) : $this->latest($currency);
+        $rates = $date ? $this->rates($date, $sourceCurrency) : $this->latest($sourceCurrency);
 
         $provider = new BaseCurrencyProvider(
             provider: (new ConfigurableProvider)->setExchangeRate(
