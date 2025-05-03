@@ -1,8 +1,10 @@
 # Laravel Forex
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/elegantly/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/elegantly/laravel-forex)  
-[![Tests](https://img.shields.io/github/actions/workflow/status/elegantly/laravel-forex/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3Arun-tests+branch%3Amain)  
-[![Code Style](https://img.shields.io/github/actions/workflow/status/elegantly/laravel-forex/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)  
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/elegantly/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/elegantly/laravel-forex)
+[![Tests](https://img.shields.io/github/actions/workflow/status/ElegantEngineeringTech/laravel-forex/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![Code Style](https://img.shields.io/github/actions/workflow/status/ElegantEngineeringTech/laravel-forex/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![PHPStan Level](https://img.shields.io/github/actions/workflow/status/ElegantEngineeringTech/laravel-forex/phpstan.yml?label=phpstan&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3Aphpstan)
+[![Laravel Pint](https://img.shields.io/github/actions/workflow/status/ElegantEngineeringTech/laravel-forex/pint.yml?label=laravel%20pint&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3Apint)
 [![Total Downloads](https://img.shields.io/packagist/dt/elegantly/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/elegantly/laravel-forex)
 
 **Laravel Forex** is a simple and flexible package for retrieving the latest and historical foreign exchange rates in your Laravel application.
@@ -11,7 +13,7 @@ By default, it uses the free tier from [exchangerate-api.com](https://www.exchan
 
 ---
 
-## 🚀 Installation
+## Installation
 
 Install via Composer:
 
@@ -27,7 +29,7 @@ php artisan vendor:publish --tag="forex-config"
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 Here’s the default configuration that will be published to `config/forex.php`:
 
@@ -61,7 +63,7 @@ return [
 
 ---
 
-## 📦 Usage
+## Usage
 
 ### Get Latest Rates
 
@@ -84,9 +86,29 @@ $rates = Forex::rates(Carbon::create(2022, 4, 25), 'USD');
 $usdToEur = $rates['EUR'];
 ```
 
+### Convert Money Between Currencies
+
+You can easily convert a `Money` instance from one currency to another using the `Forex::convert()` method.
+
+This method ensures high-precision conversions by leveraging the [`brick/money`](https://github.com/brick/money) PHP library.
+
+```php
+use Elegantly\Forex\Facades\Forex;
+use Brick\Money\Money;
+
+$convertedMoney = Forex::convert(
+    money: Money::of(100, 'USD'),
+    currency: 'EUR',
+);
+
+$convertedMoney->__toString(); // (EUR) 88.84
+```
+
+**Note:** The returned value is a `Money` object representing the amount in the target currency.
+
 ---
 
-## ✅ Testing
+## Testing
 
 Run the test suite with:
 
@@ -96,35 +118,31 @@ composer test
 
 ---
 
-## 📄 Changelog
+## Changelog
 
 See the [CHANGELOG](CHANGELOG.md) for details on recent updates.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please read the [CONTRIBUTING](CONTRIBUTING.md) guide for details.
 
 ---
 
-## 🔐 Security
+## Security
 
 If you discover any security-related issues, please refer to our [security policy](../../security/policy).
 
 ---
 
-## 🙏 Credits
+## Credits
 
 -   [Quentin Gabriele](https://github.com/QuentinGab)
 -   [All Contributors](../../contributors)
 
 ---
 
-## 📃 License
+## License
 
 This package is open-source software licensed under the [MIT license](LICENSE.md).
-
----
-
-Let me know if you'd like this version saved in a `README.md` file or if you want badges for other integrations!
