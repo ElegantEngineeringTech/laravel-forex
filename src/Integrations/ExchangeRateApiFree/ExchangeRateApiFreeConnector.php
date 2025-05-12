@@ -18,6 +18,7 @@ use Saloon\RateLimitPlugin\Contracts\RateLimitStore;
 use Saloon\RateLimitPlugin\Limit;
 use Saloon\RateLimitPlugin\Stores\LaravelCacheStore;
 use Saloon\RateLimitPlugin\Traits\HasRateLimits;
+use Saloon\Traits\Plugins\AlwaysThrowOnErrors;
 
 /**
  * Free exchange rate values updated once a day
@@ -26,6 +27,7 @@ use Saloon\RateLimitPlugin\Traits\HasRateLimits;
  */
 class ExchangeRateApiFreeConnector extends Connector implements Cacheable, ForexClient
 {
+    use AlwaysThrowOnErrors;
     use HasCaching;
     use HasRateLimits;
 
