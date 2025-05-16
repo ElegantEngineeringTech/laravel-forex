@@ -40,13 +40,13 @@ return [
 
     'cache' => [
         'enabled' => true,
-        'driver' => env('FOREX_CACHE_DRIVER', env('CACHE_DRIVER', 'file')),
+        'driver' => env('FOREX_CACHE_DRIVER', env('CACHE_STORE', env('CACHE_DRIVER', 'file'))),
         'expiry_seconds' => 86_400, // 1 day
     ],
 
     'rate_limit' => [
         'enabled' => false,
-        'driver' => env('FOREX_RATE_LIMIT_DRIVER', env('CACHE_DRIVER', 'file')),
+        'driver' => env('FOREX_RATE_LIMIT_DRIVER', env('CACHE_STORE', env('CACHE_DRIVER', 'file'))),
         'every_seconds' => 3_600, // 1 hour
     ],
 
