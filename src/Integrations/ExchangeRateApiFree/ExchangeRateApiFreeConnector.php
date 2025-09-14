@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Elegantly\Forex\Integrations\ExchangeRateApiFree;
 
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use Elegantly\Forex\ForexClient;
 use Elegantly\Forex\Integrations\ExchangeRateApiFree\Requests\LatestRequest;
 use Exception;
@@ -92,7 +92,7 @@ class ExchangeRateApiFreeConnector extends Connector implements Cacheable, Forex
         return $this->send(new LatestRequest($currency))->json('rates', []);
     }
 
-    public function rates(Carbon $date, string $currency): array
+    public function rates(CarbonInterface $date, string $currency): array
     {
         throw new Exception(static::class.' does not support historical data.');
     }

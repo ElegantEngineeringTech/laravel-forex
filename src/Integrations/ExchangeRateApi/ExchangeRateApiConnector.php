@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Elegantly\Forex\Integrations\ExchangeRateApi;
 
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use Elegantly\Forex\ForexClient;
 use Elegantly\Forex\Integrations\ExchangeRateApi\Requests\HistoryRequest;
 use Elegantly\Forex\Integrations\ExchangeRateApiFree\Requests\LatestRequest;
@@ -103,7 +103,7 @@ class ExchangeRateApiConnector extends Connector implements Cacheable, ForexClie
         return $this->send(new LatestRequest($currency))->json('conversion_rates', []);
     }
 
-    public function rates(Carbon $date, string $currency): array
+    public function rates(CarbonInterface $date, string $currency): array
     {
         // @phpstan-ignore-next-line
         return $this->send(new HistoryRequest($date, $currency))->json('conversion_rates', []);

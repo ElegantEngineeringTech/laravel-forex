@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Elegantly\Forex;
 
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
 
 interface ForexClient
 {
@@ -16,5 +16,5 @@ interface ForexClient
     /**
      * @return array<string, int|float>
      */
-    public function rates(Carbon $carbon, string $currency): array;
+    public function rates(CarbonInterface $carbon, string $currency): array;
 }

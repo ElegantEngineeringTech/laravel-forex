@@ -10,7 +10,7 @@ use Brick\Money\CurrencyConverter;
 use Brick\Money\ExchangeRateProvider\BaseCurrencyProvider;
 use Brick\Money\ExchangeRateProvider\ConfigurableProvider;
 use Brick\Money\Money;
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
 
 class Forex
 {
@@ -41,7 +41,7 @@ class Forex
     /**
      * @return array<string, int|float>
      */
-    public function rates(Carbon $date, string $currency): array
+    public function rates(CarbonInterface $date, string $currency): array
     {
         $datetime = $date->format('Y-m-d');
 
@@ -67,7 +67,7 @@ class Forex
     /**
      * @return array<string, int|float>
      */
-    public function refreshRates(Carbon $date, string $currency): array
+    public function refreshRates(CarbonInterface $date, string $currency): array
     {
         $datetime = $date->format('Y-m-d');
 
@@ -77,7 +77,7 @@ class Forex
     /**
      * @return array<string, int|float>
      */
-    public function queryRates(Carbon $date, string $currency): array
+    public function queryRates(CarbonInterface $date, string $currency): array
     {
         return $this->client->rates($date, $currency);
     }
@@ -107,7 +107,7 @@ class Forex
         Money $money,
         string|Currency $currency,
         RoundingMode $roundingMode = RoundingMode::HALF_UP,
-        ?Carbon $date = null,
+        ?CarbonInterface $date = null,
     ): Money {
 
         $currency = is_string($currency) ? $currency : $currency->getCurrencyCode();
