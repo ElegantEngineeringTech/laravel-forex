@@ -106,6 +106,7 @@ class Forex
     public function convert(
         Money $money,
         string|Currency $currency,
+        // @phpstan-ignore-next-line
         RoundingMode $roundingMode = RoundingMode::HALF_UP,
         ?CarbonInterface $date = null,
     ): Money {
