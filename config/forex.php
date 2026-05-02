@@ -4,9 +4,15 @@ declare(strict_types=1);
 
 // config for Finller/Forex
 
+use Brick\Math\RoundingMode;
 use Elegantly\Forex\Integrations\ExchangeRateApiFree\ExchangeRateApiFreeConnector;
 
 return [
+
+    /**
+     * Rounding mode used when converting money
+     */
+    'rounding_mode' => RoundingMode::HalfUp,
 
     'cache' => [
         'enabled' => true,

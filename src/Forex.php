@@ -106,10 +106,11 @@ class Forex
     public function convert(
         Money $money,
         string|Currency $currency,
-        // @phpstan-ignore-next-line
-        RoundingMode $roundingMode = RoundingMode::HALF_UP,
+        ?RoundingMode $roundingMode = null,
         ?CarbonInterface $date = null,
     ): Money {
+
+        $roundingMode ??= config('forex.roundingMode', RoundingMode::HalfUp);
 
         $currency = is_string($currency) ? $currency : $currency->getCurrencyCode();
 
@@ -135,6 +136,7 @@ class Forex
         return $converter->convert(
             $money,
             $currency,
+            // @phpstan-ignore-next-line
             roundingMode: $roundingMode
         );
 
