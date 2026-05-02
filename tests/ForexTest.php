@@ -27,7 +27,7 @@ it('can convert money to another currency', function ($money, $expected) {
     expect((string) $converted)->toBe((string) $expected);
 
 })->with([
-    [Money::of(100, 'USD'), Money::of(100, 'USD')],
-    [Money::of(100, 'USD'), Money::of(87.81, 'EUR')],
-    [Money::of(100, 'USD'), Money::of(74.61, 'GBP')],
+    [Money::of(100, 'USD'), Money::of('100', 'USD')],
+    [Money::of(100, 'USD'), Money::of('87.81', 'EUR')],
+    [Money::of(100, 'USD'), Money::of('74.61', 'GBP')],
 ]);

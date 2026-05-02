@@ -125,7 +125,7 @@ class Forex
             provider: (new ConfigurableProvider)->setExchangeRate(
                 $money->getCurrency()->getCurrencyCode(),
                 $currency,
-                $rates[$currency]
+                (string) $rates[$currency]
             ),
             baseCurrencyCode: $money->getCurrency()->getCurrencyCode()
         );
