@@ -33,17 +33,20 @@ class Forex
     /**
      * @return array<string, int|float>
      */
-    public function latest(string $currency): array
+    public function latest(string|Currency $currency): array
     {
+        $currency = $currency instanceof Currency ? $currency->getCurrencyCode() : $currency;
+
         return $this->latest[$currency] ?? $this->refreshLatest($currency);
     }
 
     /**
      * @return array<string, int|float>
      */
-    public function rates(CarbonInterface $date, string $currency): array
+    public function rates(CarbonInterface $date, string|Currency $currency): array
     {
         $datetime = $date->format('Y-m-d');
+        $currency = $currency instanceof Currency ? $currency->getCurrencyCode() : $currency;
 
         return $this->rates[$datetime][$currency] ?? $this->refreshRates($date, $currency);
     }
@@ -51,25 +54,30 @@ class Forex
     /**
      * @return array<string, int|float>
      */
-    public function refreshLatest(string $currency): array
+    public function refreshLatest(string|Currency $currency): array
     {
+        $currency = $currency instanceof Currency ? $currency->getCurrencyCode() : $currency;
+
         return $this->latest[$currency] = $this->queryLatest($currency);
     }
 
     /**
      * @return array<string, int|float>
      */
-    public function queryLatest(string $currency): array
+    public function queryLatest(string|Currency $currency): array
     {
+        $currency = $currency instanceof Currency ? $currency->getCurrencyCode() : $currency;
+
         return $this->client->latest($currency);
     }
 
     /**
      * @return array<string, int|float>
      */
-    public function refreshRates(CarbonInterface $date, string $currency): array
+    public function refreshRates(CarbonInterface $date, string|Currency $currency): array
     {
         $datetime = $date->format('Y-m-d');
+        $currency = $currency instanceof Currency ? $currency->getCurrencyCode() : $currency;
 
         return $this->rates[$datetime][$currency] = $this->queryRates($date, $currency);
     }
@@ -77,8 +85,10 @@ class Forex
     /**
      * @return array<string, int|float>
      */
-    public function queryRates(CarbonInterface $date, string $currency): array
+    public function queryRates(CarbonInterface $date, string|Currency $currency): array
     {
+        $currency = $currency instanceof Currency ? $currency->getCurrencyCode() : $currency;
+
         return $this->client->rates($date, $currency);
     }
 
@@ -103,6 +113,27 @@ class Forex
         return $this->client;
     }
 
+    public function getCurrencyConverter(
+        string|Currency $sourceCurrency,
+        ?CarbonInterface $date = null,
+    ): CurrencyConverter {
+
+        $rates = $date ? $this->rates($date, $sourceCurrency) : $this->latest($sourceCurrency);
+
+        $builder = ConfigurableProvider::builder();
+
+        foreach ($rates as $targetCurrency => $exchangeRate) {
+            $builder->addExchangeRate($sourceCurrency, $targetCurrency, (string) $exchangeRate);
+        }
+
+        return new CurrencyConverter(
+            new BaseCurrencyProvider(
+                $builder->build(),
+                $sourceCurrency
+            )
+        );
+    }
+
     public function convert(
         Money $money,
         string|Currency $currency,
@@ -110,28 +141,16 @@ class Forex
         ?CarbonInterface $date = null,
     ): Money {
 
-        $roundingMode ??= config('forex.roundingMode', RoundingMode::HalfUp);
-
-        $currency = is_string($currency) ? $currency : $currency->getCurrencyCode();
-
-        $sourceCurrency = $money->getCurrency()->getCurrencyCode();
-
-        if ($sourceCurrency === $currency) {
+        if ($money->getCurrency()->isEqualTo($currency)) {
             return $money;
         }
 
-        $rates = $date ? $this->rates($date, $sourceCurrency) : $this->latest($sourceCurrency);
+        $roundingMode ??= config('forex.roundingMode', RoundingMode::HalfUp);
 
-        $provider = new BaseCurrencyProvider(
-            provider: (new ConfigurableProvider)->setExchangeRate(
-                $money->getCurrency()->getCurrencyCode(),
-                $currency,
-                (string) $rates[$currency]
-            ),
-            baseCurrencyCode: $money->getCurrency()->getCurrencyCode()
+        $converter = $this->getCurrencyConverter(
+            sourceCurrency: $money->getCurrency(),
+            date: $date
         );
-
-        $converter = new CurrencyConverter($provider);
 
         return $converter->convert(
             $money,
