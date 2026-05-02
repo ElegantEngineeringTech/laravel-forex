@@ -38,6 +38,11 @@ use Elegantly\Forex\Integrations\ExchangeRateApiFree\ExchangeRateApiFreeConnecto
 
 return [
 
+    /**
+     * Rounding mode used when converting money
+     */
+    'rounding_mode' => RoundingMode::HalfUp,
+
     'cache' => [
         'enabled' => true,
         'driver' => env('FOREX_CACHE_DRIVER', env('CACHE_STORE', env('CACHE_DRIVER', 'file'))),
@@ -103,8 +108,6 @@ $convertedMoney = Forex::convert(
 
 $convertedMoney->__toString(); // (EUR) 88.84
 ```
-
-**Note:** The returned value is a `Money` object representing the amount in the target currency.
 
 ---
 
