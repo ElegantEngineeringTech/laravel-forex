@@ -2,7 +2,6 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/elegantly/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/elegantly/laravel-forex)
 [![Tests](https://img.shields.io/github/actions/workflow/status/ElegantEngineeringTech/laravel-forex/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![Code Style](https://img.shields.io/github/actions/workflow/status/ElegantEngineeringTech/laravel-forex/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![PHPStan Level](https://img.shields.io/github/actions/workflow/status/ElegantEngineeringTech/laravel-forex/phpstan.yml?label=phpstan&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3Aphpstan)
 [![Laravel Pint](https://img.shields.io/github/actions/workflow/status/ElegantEngineeringTech/laravel-forex/pint.yml?label=laravel%20pint&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3Apint)
 [![Total Downloads](https://img.shields.io/packagist/dt/elegantly/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/elegantly/laravel-forex)
