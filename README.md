@@ -1,10 +1,10 @@
 # Laravel Forex
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/elegantly/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/elegantly/laravel-forex)
-[![Tests](https://img.shields.io/github/actions/workflow/status/ElegantEngineeringTech/laravel-forex/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![PHPStan Level](https://img.shields.io/github/actions/workflow/status/ElegantEngineeringTech/laravel-forex/phpstan.yml?label=phpstan&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3Aphpstan)
-[![Laravel Pint](https://img.shields.io/github/actions/workflow/status/ElegantEngineeringTech/laravel-forex/pint.yml?label=laravel%20pint&style=flat-square)](https://github.com/ElegantEngineeringTech/laravel-forex/actions?query=workflow%3Apint)
-[![Total Downloads](https://img.shields.io/packagist/dt/elegantly/laravel-forex.svg?style=flat-square)](https://packagist.org/packages/elegantly/laravel-forex)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/elegantly/laravel-forex.svg)](https://packagist.org/packages/elegantly/laravel-forex)
+[![Total Downloads](https://img.shields.io/packagist/dt/elegantly/laravel-forex.svg)](https://packagist.org/packages/elegantly/laravel-forex)
+[![Tests](https://github.com/ElegantEngineeringTech/laravel-forex/actions/workflows/run-tests.yml/badge.svg)](https://github.com/ElegantEngineeringTech/laravel-forex/actions/workflows/run-tests.yml)
+[![Laravel Pint](https://github.com/ElegantEngineeringTech/laravel-forex/actions/workflows/pint.yml/badge.svg)](https://github.com/ElegantEngineeringTech/laravel-forex/actions/workflows/pint.yml)
+[![PHPStan](https://github.com/ElegantEngineeringTech/laravel-forex/actions/workflows/phpstan.yml/badge.svg)](https://github.com/ElegantEngineeringTech/laravel-forex/actions/workflows/phpstan.yml)
 
 **Laravel Forex** is a simple and flexible package for retrieving the latest and historical foreign exchange rates in your Laravel application.
 
