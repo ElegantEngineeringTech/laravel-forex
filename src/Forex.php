@@ -123,7 +123,9 @@ class Forex
         $builder = ConfigurableProvider::builder();
 
         foreach ($rates as $targetCurrency => $exchangeRate) {
-            $builder->addExchangeRate($sourceCurrency, $targetCurrency, (string) $exchangeRate);
+            if ($exchangeRate > 0) {
+                $builder->addExchangeRate($sourceCurrency, $targetCurrency, (string) $exchangeRate);
+            }
         }
 
         return new CurrencyConverter(
