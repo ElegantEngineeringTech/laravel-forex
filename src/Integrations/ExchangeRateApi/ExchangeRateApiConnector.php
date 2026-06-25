@@ -105,10 +105,6 @@ class ExchangeRateApiConnector extends Connector implements Cacheable, ForexClie
 
     public function rates(CarbonInterface $date, string $currency): array
     {
-        if ($date->isToday()) {
-            return $this->latest($currency);
-        }
-
         // @phpstan-ignore-next-line
         return $this->send(new HistoryRequest($date, $currency))->json('conversion_rates', []);
     }
