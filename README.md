@@ -22,6 +22,7 @@ By default, it uses the free tier from [exchangerate-api.com](https://www.exchan
     -   [Latest Rates](#latest-rates)
     -   [Historical Rates](#historical-rates)
     -   [Converting Money](#converting-money)
+    -   [Validating Money](#validating-money)
     -   [Refreshing Rates](#refreshing-rates)
 -   [Providers](#providers)
     -   [ExchangeRate-Api.com](#exchangerate-apicom)
@@ -41,6 +42,7 @@ By default, it uses the free tier from [exchangerate-api.com](https://www.exchan
 -   Retrieve latest exchange rates for any base currency.
 -   Retrieve historical exchange rates for a specific date.
 -   Convert `Money` instances between currencies with high precision using [`brick/money`](https://github.com/brick/money).
+-   Validate money amounts with optional currency-aware minimum and maximum bounds.
 -   Built-in caching and optional rate limiting to keep API usage under control.
 -   Swap the default provider with a custom implementation via a simple interface.
 
@@ -176,6 +178,38 @@ $convertedMoney = Forex::convert(
     date: Carbon::create(2022, 4, 25),
 );
 ```
+
+### Validating Money
+
+Use `ValidMoney` in Laravel validation rules to parse a money value and optionally enforce minimum and maximum amounts:
+
+```php
+use Brick\Money\Currency;
+use Brick\Money\Money;
+use Elegantly\Forex\Rules\ValidMoney;
+
+$validated = $request->validate([
+    'amount' => [
+        'required',
+        new ValidMoney(
+            currency: Currency::of('USD'),
+            min: Money::of(10, 'EUR'),
+            max: Money::of(100, 'EUR'),
+        ),
+    ],
+]);
+```
+
+The value is parsed using the selected currency. If `currency` is omitted, the default currency from `elegantly/laravel-money` is used. To read the currency from another field in the validation data, pass its attribute name instead:
+
+```php
+$validated = $request->validate([
+    'currency' => ['required', 'string'],
+    'amount' => ['required', new ValidMoney(currency: 'currency')],
+]);
+```
+
+When `min` or `max` uses a different currency, the parsed amount is converted using the latest Forex rates before comparison. Bounds are inclusive; validation fails when the amount is below `min` or above `max`.
 
 ### Refreshing Rates
 
