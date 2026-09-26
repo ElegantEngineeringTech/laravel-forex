@@ -88,7 +88,7 @@ class ValidMoney implements DataAwareRule, ValidationRule
             $this->min && Forex::convert($money, $this->min->getCurrency())->isLessThan($this->min)
         ) {
             $fail('money::validation.money_min')->translate([
-                'value' => $this->min->formatToLocale($locale),
+                'value' => $this->min->formatToLocale($locale, hideFractionIfWhole: true),
             ]);
 
             return;
@@ -98,7 +98,7 @@ class ValidMoney implements DataAwareRule, ValidationRule
             $this->max && Forex::convert($money, $this->max->getCurrency())->isGreaterThan($this->max)
         ) {
             $fail('money::validation.money_max')->translate([
-                'value' => $this->max->formatToLocale($locale),
+                'value' => $this->max->formatToLocale($locale, hideFractionIfWhole: true),
             ]);
 
             return;
