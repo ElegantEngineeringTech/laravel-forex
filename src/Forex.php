@@ -51,6 +51,14 @@ class Forex
         return $this->rates[$datetime][$currency] ?? $this->refreshRates($date, $currency);
     }
 
+    public function rate(CarbonInterface $date, string|Currency $currency, string|Currency $target): int|float|null
+    {
+        $target = $target instanceof Currency ? $target->getCurrencyCode() : $target;
+        $rates = $this->rates($date, $currency);
+
+        return $rates[$target] ?? null;
+    }
+
     /**
      * @return array<string, int|float>
      */

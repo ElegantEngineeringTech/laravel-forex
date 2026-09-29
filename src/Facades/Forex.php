@@ -11,12 +11,13 @@ use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static array<string, int|float> latest(string $currency)
- * @method static array<string, int|float> rates(CarbonInterface $date, string $currency)
- * @method static array<string, int|float> refreshLatest()
- * @method static array<string, int|float> queryLatest()
- * @method static array<string, int|float> refreshRates()
- * @method static array<string, int|float> queryRates()
+ * @method static array<string, int|float> latest(string|Currency $currency)
+ * @method static array<string, int|float> rates(CarbonInterface $date, string|Currency $currency)
+ * @method static array<string, int|float> rate(CarbonInterface $date, string|Currency $currency, string|Currency $target)
+ * @method static array<string, int|float> refreshLatest(string|Currency $currency)
+ * @method static array<string, int|float> queryLatest(string|Currency $currency)
+ * @method static array<string, int|float> refreshRates(CarbonInterface $date, string|Currency $currency)
+ * @method static array<string, int|float> queryRates(CarbonInterface $date, string|Currency $currency)
  * @method static array<string, array<string, int|float>> getLatest()
  * @method static array<string, array<string, array<string, int|float>>> getRates()
  * @method static Money convert(Money $money, string|Currency $currency, ?RoundingMode $roundingMode = null, ?CarbonInterface $date = null)
