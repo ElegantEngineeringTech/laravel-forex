@@ -23,7 +23,7 @@ use Elegantly\Forex\Facades\Forex;
 function sumMoney(
     iterable $items,
     string|Closure $key,
-    string|Currency $currency,
+    null|string|Currency $currency,
     null|string|CarbonInterface|Closure $date,
     ?RoundingMode $roundingMode = null,
 ): ?Money {
@@ -51,12 +51,14 @@ function sumMoney(
             continue;
         }
 
-        $money = Forex::convert(
-            money: $money,
-            currency: $currency,
-            roundingMode: $roundingMode,
-            date: $date ? $date($item) : null
-        );
+        if ($currency) {
+            $money = Forex::convert(
+                money: $money,
+                currency: $currency,
+                roundingMode: $roundingMode,
+                date: $date ? $date($item) : null
+            );
+        }
 
         $total = $total === null ? $money : $total->plus($money, $roundingMode);
     }
