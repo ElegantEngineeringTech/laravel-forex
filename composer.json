@@ -40,7 +40,10 @@
     "autoload": {
         "psr-4": {
             "Elegantly\\Forex\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Elegantly\Forex;
 
+use Brick\Math\RoundingMode;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -29,5 +30,11 @@ class ForexServiceProvider extends PackageServiceProvider
 
             return new Forex(new $client);
         });
+    }
+
+    public static function getRoundingMode(): RoundingMode
+    {
+        // @phpstan-ignore-next-line
+        return config('forex.rounding_mode') ?? RoundingMode::HalfUp;
     }
 }

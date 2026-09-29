@@ -147,7 +147,7 @@ class Forex
             return $money;
         }
 
-        $roundingMode ??= config('forex.roundingMode', RoundingMode::HalfUp);
+        $roundingMode ??= ForexServiceProvider::getRoundingMode();
 
         $converter = $this->getCurrencyConverter(
             sourceCurrency: $money->getCurrency(),
@@ -155,9 +155,8 @@ class Forex
         );
 
         return $converter->convert(
-            $money,
-            $currency,
-            // @phpstan-ignore-next-line
+            money: $money,
+            currency: $currency,
             roundingMode: $roundingMode
         );
 
